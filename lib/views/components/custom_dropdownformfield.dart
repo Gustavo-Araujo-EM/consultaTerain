@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 class CustomDropDownButtonFormField extends StatefulWidget {
 
   final String value;
-  final ValueNotifier<String> dropValue;
+  final String dropValue;
   final String nome;
   final Icon? icone;
+  final void Function(String?) onChanged;
 
   const CustomDropDownButtonFormField({
     super.key,
-    required this.value, required this.dropValue, required this.dropOpcoes, required this.nome, this.icone,
+    required this.value, required this.dropValue, required this.dropOpcoes, required this.nome, this.icone, required this.onChanged,
   });
 
   final List<String> dropOpcoes;
@@ -36,7 +37,7 @@ class _CustomDropDownButtonFormFieldState extends State<CustomDropDownButtonForm
       style: const TextStyle(color: Colors.black,fontSize: 20),
       hint: const Text("Selecione", style: TextStyle(color: Colors.black)),
       value: (widget.value.isEmpty) ? null : widget.value,
-      onChanged: (value) => widget.dropValue.value = value.toString(),
+      onChanged: widget.onChanged,
       items: widget.dropOpcoes.map((opcao) => DropdownMenuItem(
         value: opcao,
         child: Text(opcao),

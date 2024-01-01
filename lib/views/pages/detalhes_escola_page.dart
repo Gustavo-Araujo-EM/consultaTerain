@@ -12,67 +12,37 @@ class DetalhesEscolaPage extends StatelessWidget {
     return Scaffold(appBar: AppBar(
       title: const Text("Detalhes"),
     ),
-    body: SafeArea(child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        const SizedBox(
-          height: 16,
-        ),
-        Center(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Image.asset(EscolaController().obterImagemPelaClassificacao(escola.classificacao), width: 200)
-            ),
-        ),
-        const SizedBox(
-          height: 22,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            CustomColumnDetalhes(label: "Razão Social", fontSize: 18.0, value: escola.razaoSocial),
-            CustomColumnDetalhes(label: "Nome da Escola", fontSize: 18.0, value: escola.nomeEscola),
-          ],
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            CustomColumnDetalhes(label: "ID do Registro", fontSize: 18.0, value: escola.idRegistro.toString()),
-            CustomColumnDetalhes(label: "Nome do Registro", fontSize: 18.0, value: escola.nomeRegistro),
-          ],
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            CustomColumnDetalhes(label: "Relacionamento", fontSize: 18.0, value: escola.tipoRelacionamento.toString()),
-            const CustomColumnDetalhes(label: "fase", fontSize: 18.0, value: "-------------------"),
-          ],
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            CustomColumnDetalhes(label: "Cidade", fontSize: 18.0, value: escola.cidade.toString()),
-            CustomColumnDetalhes(label: "UF", fontSize: 18.0, value: escola.estado),
-          ],
-        ),
-        const SizedBox(
-          height: 12,
-        ),
-        Center(child: CustomColumnDetalhes(label: "Quantidade de Licença", fontSize: 18.0, value: escola.qtdLicenca.toString())),
-        const SizedBox(
-          height: 12,
-        ),
-      ],
+    body: SafeArea(child: SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(
+            height: 16,
+          ),
+          Center(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.asset(EscolaController().obterImagemPelaClassificacao(escola.classificacao), width: 200)
+              ),
+          ),
+          const SizedBox(
+            height: 22,
+          ),
+          CustomColumnDetalhes(label: "Razão Social", fontSize: 18.0, value: escola.razaoSocial),
+          CustomColumnDetalhes(label: "Nome da Escola", fontSize: 18.0, value: escola.nomeEscola),
+          CustomColumnDetalhes(label: "ID do Registro", fontSize: 18.0, value: escola.idRegistro.toString()),
+          CustomColumnDetalhes(label: "Nome do Registro", fontSize: 18.0, value: escola.nomeRegistro),
+          CustomColumnDetalhes(label: "Relacionamento", fontSize: 18.0, value: escola.tipoRelacionamento.toString()),
+          CustomColumnDetalhes(label: "Cidade", fontSize: 18.0, value: escola.cidade.toString()),
+          CustomColumnDetalhes(label: "UF", fontSize: 18.0, value: escola.estado),
+          CustomColumnDetalhes(label: "Quantidade de Licença", fontSize: 18.0, value: escola.qtdLicenca.toString()),
+          ExpansionTile(
+            title: const Text('Modulos'),
+            collapsedIconColor: Colors.red,
+            children: escola.modulos.map((e) => ListTile(title: Text(e.nome))).toList(),
+          ),
+        ],
+      ),
     ),
     ),
     );

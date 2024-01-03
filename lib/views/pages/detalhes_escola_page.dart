@@ -28,19 +28,32 @@ class DetalhesEscolaPage extends StatelessWidget {
           const SizedBox(
             height: 22,
           ),
-          CustomColumnDetalhes(label: "Razão Social", fontSize: 18.0, value: escola.razaoSocial),
-          CustomColumnDetalhes(label: "Nome da Escola", fontSize: 18.0, value: escola.nomeEscola),
-          CustomColumnDetalhes(label: "ID do Registro", fontSize: 18.0, value: escola.idRegistro.toString()),
-          CustomColumnDetalhes(label: "Nome do Registro", fontSize: 18.0, value: escola.nomeRegistro),
-          CustomColumnDetalhes(label: "Relacionamento", fontSize: 18.0, value: escola.tipoRelacionamento.toString()),
-          CustomColumnDetalhes(label: "Cidade", fontSize: 18.0, value: escola.cidade.toString()),
-          CustomColumnDetalhes(label: "UF", fontSize: 18.0, value: escola.estado),
-          CustomColumnDetalhes(label: "Quantidade de Licença", fontSize: 18.0, value: escola.qtdLicenca.toString()),
-          ExpansionTile(
-            title: const Text('Modulos'),
-            collapsedIconColor: Colors.red,
-            children: escola.modulos.map((e) => ListTile(title: Text(e.nome))).toList(),
+          Container(
+            width: double.infinity,
+            child: Card(
+              color: Colors.grey[900],
+              child: Column(
+                children: [
+                  CustomColumnDetalhes(label: "Razão Social", fontSize: 18.0, value: escola.razaoSocial),
+                  CustomColumnDetalhes(label: "Nome da Escola", fontSize: 18.0, value: escola.nomeEscola),
+                  CustomColumnDetalhes(label: "ID do Registro", fontSize: 18.0, value: escola.idRegistro.toString()),
+                  CustomColumnDetalhes(label: "Nome do Registro", fontSize: 18.0, value: escola.nomeRegistro),
+                  CustomColumnDetalhes(label: "Relacionamento", fontSize: 18.0, value: escola.tipoRelacionamento.toString()),
+                  CustomColumnDetalhes(label: "Cidade", fontSize: 18.0, value: escola.cidade.toString()),
+                  CustomColumnDetalhes(label: "UF", fontSize: 18.0, value: escola.estado),
+                  CustomColumnDetalhes(label: "Quantidade de Licença", fontSize: 18.0, value: escola.qtdLicenca.toString()),            
+                ],
+              ), 
+            ),
           ),
+          Card(
+             color: Colors.grey[900],
+             child: ExpansionTile(
+                title: const Text('Modulos', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                collapsedIconColor: Colors.red,
+                children: escola.modulos.map((e) => ListTile(title: Text(e.nome))).toList(),
+             ),
+           ),
         ],
       ),
     ),

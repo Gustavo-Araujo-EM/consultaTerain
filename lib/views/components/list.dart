@@ -25,10 +25,11 @@ class MyList extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(escola.nomeRegistro),
-              Text(escola.cidade),
+              Text(escola.idRegistro.toString()),
+              Text(escola.cidade), 
             ],
           ),
+          trailing: const Icon(Icons.info_outline),
           onTap: () => Navigator.push(context, MaterialPageRoute(
             builder: (context) => 
             DetalhesEscolaPage(escola: escola)
